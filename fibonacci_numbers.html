@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Generate Fibonacci sequence</h3>
+    <p>Please check the console</p>
+
+    <script>
+        function fibs(n){
+            let fib = [];
+            fib[0] = 0;
+            fib[1] = 1;
+
+            if(n > 1){
+                for(i=2; i<n; i++){
+                    fib[i] = fib[i-1] + fib[i-2];
+                }
+            }
+            return fib;
+        }
+
+        function fibsRec(n, array){
+
+            console.log("This was printed recursively");
+
+            if(n === 0){
+                array[0] = 0;
+            }
+            if(n === 1){
+                array[1] = 1;
+            }
+
+            if(n>1){
+                array[n] = fibsRec(n-1, array).value + fibsRec(n-2, array).value;
+            }
+            let value = array[n];
+            return {array, value};
+        }
+
+        console.log("Fibonacci numbers till 8th");
+        console.log("With iteration:");
+        console.log(fibs(8));
+        console.log("With recursion");
+        let arr = [];
+        console.log(fibsRec(8,arr).array);
+    </script>
+</body>
+</html>

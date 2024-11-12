@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Merge sort</h3>
+    <p>Please check the console</p>
+    <script>
+        function merge_sort(arr){
+
+            if(arr.length <= 1){
+                return arr;
+            }
+            let arr_length = arr.length;
+            let half = Math.floor(arr_length/2) + 1;
+            let first_half = arr.slice(0,half);
+            let second_half = arr.slice(half);
+
+            let sorted_first = merge_sort(first_half);
+            let sorted_second = merge_sort(second_half);
+
+            return (merge(sorted_first,sorted_second));
+
+        }
+
+        function merge(arr_one, arr_two){
+            let new_arr = [];
+            let i = 0;
+            let j = 0;
+
+            while(i<arr_one.length && j<arr_two.length){
+                if(arr_one[i] < arr_two[j]){
+                    new_arr.push(arr_one[i]);
+                    i++;
+                }else{
+                    new_arr.push(arr_two[j]);
+                    j++;
+                }
+            }
+
+            if((arr_one.length-1) > (i)){
+                new_arr.concat(arr_one.slice((i)));
+            }
+
+            if((arr_two.length-1) > (j)){
+                new_arr.concat(arr_two.slice((j)));
+            }
+
+            return new_arr;
+        }
+
+        let array = [50, 10];
+        console.log(array);
+        console.log(merge_sort(array));
+    </script>
+</body>
+</html>
